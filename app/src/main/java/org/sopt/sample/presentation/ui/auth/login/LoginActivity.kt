@@ -2,8 +2,6 @@ package org.sopt.sample.presentation.ui.auth.login
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
@@ -15,7 +13,7 @@ import org.sopt.sample.databinding.ActivityLoginBinding
 import org.sopt.sample.domain.model.auth.TextInput
 import org.sopt.sample.presentation.common.base.BaseActivity
 import org.sopt.sample.presentation.ui.auth.signup.SignUpActivity
-import org.sopt.sample.presentation.ui.main.MainActivity
+import org.sopt.sample.presentation.ui.home.introduce.IntroduceActivity
 import timber.log.Timber
 
 class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login) {
@@ -99,7 +97,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
     }
 
     private fun navigateToMain() {
-        val intent = Intent(this, MainActivity::class.java).apply {
+        val intent = Intent(this, IntroduceActivity::class.java).apply {
             putExtra(USER_ID_KEY, viewModel.userId)
             putExtra(USER_PW_KEY, viewModel.userPw)
             putExtra(USER_MBTI_KEY, viewModel.userMbti)
