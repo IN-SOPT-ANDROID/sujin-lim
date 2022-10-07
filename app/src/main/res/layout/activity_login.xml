@@ -8,9 +8,58 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_constraint_login"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.ui.auth.LoginActivity">
+        android:paddingHorizontal="@dimen/margin_bg_default"
+        tools:context=".presentation.ui.auth.login.LoginActivity">
+
+        <TextView
+            android:id="@+id/tv_main_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/main_sign_text"
+            style="@style/H1"
+            android:layout_marginTop="@dimen/margin_bg_vertical_default"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <include
+            android:id="@+id/layout_id_text_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            layout="@layout/layout_text_input"
+            android:layout_marginTop="@dimen/margin_bg_vertical_default"
+            app:layout_constraintTop_toBottomOf="@id/tv_main_title"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <include
+            android:id="@+id/layout_pw_text_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            layout="@layout/layout_text_input"
+            android:layout_marginTop="@dimen/margin_bg_vertical_default"
+            app:layout_constraintTop_toBottomOf="@id/layout_id_text_input"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/login_btn_text"
+            android:paddingVertical="@dimen/padding_btn_vertical_default"
+            android:layout_marginTop="@dimen/margin_bg_vertical_default"
+            app:layout_constraintTop_toBottomOf="@id/layout_pw_text_input" />
+
+        <Button
+            android:id="@+id/btn_sign_up"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/sign_up_btn_text"
+            android:paddingVertical="@dimen/padding_btn_vertical_default"
+            android:layout_marginTop="@dimen/margin_bg_default"
+            app:layout_constraintTop_toBottomOf="@id/btn_login" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

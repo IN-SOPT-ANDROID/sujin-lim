@@ -8,9 +8,10 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_constraint_signup"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.ui.auth.SignUpActivity">
+        tools:context=".presentation.ui.auth.signup.SignUpActivity">
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
