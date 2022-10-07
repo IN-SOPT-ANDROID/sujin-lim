@@ -3,12 +3,12 @@ package org.sopt.sample.presentation.ui.auth.login
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
-import android.text.InputType
 import android.text.TextWatcher
 import android.view.View
 import com.google.android.material.snackbar.Snackbar
 import org.sopt.sample.R
 import org.sopt.sample.databinding.ActivityLoginBinding
+import org.sopt.sample.domain.model.auth.TextInput
 import org.sopt.sample.presentation.common.base.BaseActivity
 import org.sopt.sample.presentation.ui.auth.signup.SignUpActivity
 
@@ -24,17 +24,19 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
     }
 
     private fun initView() {
-        binding.layoutIdTextInput.apply {
-            isPassword = false
-            tvTextInputSign.text = getString(R.string.id_sign_text)
-            tiTextInput.hint = getString(R.string.id_hint_text)
-        }
+        binding.layoutIdTextInput.textInput =
+            TextInput(
+                sign = getString(R.string.id_sign_text),
+                hint = getString(R.string.id_hint_text),
+                isPassword = false
+            )
 
-        binding.layoutPwTextInput.apply {
-            isPassword = true
-            tvTextInputSign.text = getString(R.string.pw_sign_text)
-            tiTextInput.hint = getString(R.string.pw_hint_text)
-        }
+        binding.layoutPwTextInput.textInput =
+            TextInput(
+                sign = getString(R.string.pw_sign_text),
+                hint = getString(R.string.pw_hint_text),
+                isPassword = true
+            )
     }
 
     private fun initListener() {
@@ -63,7 +65,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
             checkLogin()
         }
 
-        binding.btnSignUp.setOnClickListener {
+        binding.btnLoginSignup.setOnClickListener {
             navigateToSignUp()
         }
     }

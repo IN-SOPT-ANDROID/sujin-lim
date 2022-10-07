@@ -5,6 +5,9 @@
     <data>
         <import type="android.text.InputType"/>
         <variable
+            name="textInput"
+            type="org.sopt.sample.domain.model.auth.TextInput" />
+        <variable
             name="isPassword"
             type="Boolean" />
     </data>
@@ -17,6 +20,7 @@
             android:id="@+id/tv_text_input_sign"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@{textInput.sign}"
             style="@style/Sub1"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -26,6 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:hint="@{textInput.hint}"
             app:layout_constraintTop_toBottomOf="@+id/tv_text_input_sign"
             app:layout_constraintStart_toStartOf="parent">
 
@@ -37,7 +42,7 @@
                 android:singleLine="true"
                 android:paddingStart="0dp"
                 android:paddingEnd="0dp"
-                android:inputType="@{isPassword ? (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD) : InputType.TYPE_CLASS_TEXT}" />
+                android:inputType="@{textInput.isPassword ? (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD) : InputType.TYPE_CLASS_TEXT}" />
         </com.google.android.material.textfield.TextInputLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
