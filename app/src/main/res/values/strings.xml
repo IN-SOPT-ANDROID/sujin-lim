@@ -19,4 +19,10 @@
     <string name="signup_done_btn_text">회원가입 완료</string>
     <string name="signup_success_text">회원가입이 완료되었습니다.</string>
     <string name="signup_error_text">아이디 또는 비밀번호 양식이 잘못되었습니다.</string>
+
+    <!-- Introduce -->
+    <string name="introduce_name_sign_text">이름 : %s</string>
+    <string name="introduce_mbti_sign_text">MBTI : %s</string>
+    <string name="introduce_profile_desc">프로필이미지 입니다.</string>
+
 </resources>

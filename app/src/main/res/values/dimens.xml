@@ -3,4 +3,6 @@
     <dimen name="margin_bg_default">24dp</dimen>
     <dimen name="margin_bg_vertical_default">40dp</dimen>
     <dimen name="padding_btn_vertical_default">12dp</dimen>
+    <dimen name="size_introduce_image_default">100dp</dimen>
+    <dimen name="margin_view_vertical">12dp</dimen>
 </resources>
