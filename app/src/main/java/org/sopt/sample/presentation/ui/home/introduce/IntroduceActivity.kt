@@ -13,10 +13,10 @@ class IntroduceActivity : BaseActivity<ActivityIntroduceBinding>(R.layout.activi
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        bindingViewModel()
+        bindingView()
     }
 
-    private fun bindingViewModel() {
+    private fun bindingView() {
         with(viewModel) {
             userId = intent.getStringExtra(LoginActivity.USER_ID_KEY).toString()
             userPw = intent.getStringExtra(LoginActivity.USER_PW_KEY).toString()

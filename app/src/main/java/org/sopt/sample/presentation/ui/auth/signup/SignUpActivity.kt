@@ -20,19 +20,11 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        initView()
-        initListener()
+        bindingView()
     }
 
-    private fun observeData() {
-        with(viewModel) {
-            curId = binding.layoutIdTextInput.etTextInput.text.toString()
-            curPw = binding.layoutPwTextInput.etTextInput.text.toString()
-            curMbti = binding.layoutMbtiTextInput.etTextInput.text.toString()
-        }
-    }
-
-    private fun initView() {
+    private fun bindingView() {
+        binding.activity = this
         binding.layoutIdTextInput.apply {
             textInput = TextInput(
                 sign = getString(R.string.id_sign_text),
@@ -58,13 +50,7 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
         }
     }
 
-    private fun initListener() {
-        binding.btnSignup.setOnClickListener {
-            signUp()
-        }
-    }
-
-    private fun signUp() {
+    fun signUp() {
         observeData()
         if(viewModel.isSignUpSuccess()) {
             showSnackBar(
@@ -78,6 +64,15 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
                 view = binding.root,
                 message = getString(R.string.signup_error_text)
             )
+        }
+    }
+
+
+    private fun observeData() {
+        with(viewModel) {
+            curId = binding.layoutIdTextInput.etTextInput.text.toString()
+            curPw = binding.layoutPwTextInput.etTextInput.text.toString()
+            curMbti = binding.layoutMbtiTextInput.etTextInput.text.toString()
         }
     }
 

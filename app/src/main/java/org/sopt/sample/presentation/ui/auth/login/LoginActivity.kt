@@ -24,8 +24,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initLauncher()
-        initView()
-        initListener()
+        bindingView()
     }
 
     private fun initLauncher() {
@@ -44,14 +43,8 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         }
     }
 
-    private fun observeData() {
-        with(viewModel) {
-            curId = binding.layoutIdTextInput.etTextInput.text.toString()
-            curPw = binding.layoutPwTextInput.etTextInput.text.toString()
-        }
-    }
-
-    private fun initView() {
+    private fun bindingView() {
+        binding.activity = this
         binding.layoutIdTextInput.textInput =
             TextInput(
                 sign = getString(R.string.id_sign_text),
@@ -67,17 +60,14 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
             )
     }
 
-    private fun initListener() {
-        binding.btnLoginSignup.setOnClickListener {
-            navigateToSignUp()
-        }
-
-        binding.btnLogin.setOnClickListener {
-            login()
+    private fun observeData() {
+        with(viewModel) {
+            curId = binding.layoutIdTextInput.etTextInput.text.toString()
+            curPw = binding.layoutPwTextInput.etTextInput.text.toString()
         }
     }
 
-    private fun login() {
+    fun login() {
         observeData()
         if(viewModel.isSuccessLogin()) {
             Toast.makeText(
@@ -106,7 +96,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         startActivity(intent)
     }
 
-    private fun navigateToSignUp() {
+    fun navigateToSignUp() {
         val intent = Intent(this, SignUpActivity::class.java)
         resultLauncher.launch(intent)
     }
