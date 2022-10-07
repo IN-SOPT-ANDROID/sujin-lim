@@ -31,7 +31,7 @@ android {
         jvmTarget = '11'
     }
     buildFeatures {
-        viewBinding true
+        dataBinding true
     }
 }
 
@@ -43,6 +43,7 @@ dependencies {
 
     // timber
     implementation "com.jakewharton.timber:timber:$timber_version"
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
     // test
     testImplementation 'junit:junit:4.13.2'
