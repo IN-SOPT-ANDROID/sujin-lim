@@ -15,6 +15,7 @@ abstract class BaseActivity<T : ViewDataBinding>(@LayoutRes val layoutRes: Int) 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = DataBindingUtil.setContentView(this, layoutRes)
+        binding.lifecycleOwner = this
     }
 
     override fun onDestroy() {

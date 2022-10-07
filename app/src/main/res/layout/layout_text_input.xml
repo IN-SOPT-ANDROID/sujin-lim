@@ -7,9 +7,6 @@
         <variable
             name="textInput"
             type="org.sopt.sample.domain.model.auth.TextInput" />
-        <variable
-            name="isPassword"
-            type="Boolean" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

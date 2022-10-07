@@ -9,9 +9,7 @@
     <string name="pw_hint_text">비밀번호를 입력해주세요.</string>
     <string name="login_btn_text">LOGIN</string>
     <string name="signup_btn_text">SIGNUP</string>
-
-    <string name="login_id_error_text">아이디 양식이 잘못되었습니다.</string>
-    <string name="login_pw_error_text">비밀번호 양식이 잘못되었습니다.</string>
+    <string name="login_error_text">로그인에 실패하였습니다.</string>
     <string name="login_success_text">로그인에 성공하였습니다.</string>
 
     <!-- SignUp -->
@@ -19,5 +17,6 @@
     <string name="mbti_sign_text">MBTI</string>
     <string name="mbti_hint_text">MBTI를 입력하세요</string>
     <string name="signup_done_btn_text">회원가입 완료</string>
-
+    <string name="signup_success_text">회원가입이 완료되었습니다.</string>
+    <string name="signup_error_text">아이디 또는 비밀번호 양식이 잘못되었습니다.</string>
 </resources>
