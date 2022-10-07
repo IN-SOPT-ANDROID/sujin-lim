@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">INSOPTAndroidPractice</string>
+
+    <string name="main_sign_text">Welcome To SPOT</string>
+    <string name="id_sign_text">ID</string>
+    <string name="pw_sign_text">비밀번호</string>
+    <string name="id_hint_text">아이디를 입력해주세요.</string>
+    <string name="pw_hint_text">비밀번호를 입력해주세요.</string>
+    <string name="login_btn_text">LOGIN</string>
+    <string name="sign_up_btn_text">SIGN UP</string>
+
+    <string name="login_id_error_text">아이디 양식이 잘못되었습니다.</string>
+    <string name="login_pw_error_text">비밀번호 양식이 잘못되었습니다.</string>
+    <string name="login_success_text">로그인에 성공하였습니다.</string>
 </resources>
