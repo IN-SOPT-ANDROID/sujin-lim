@@ -12,6 +12,7 @@ import org.sopt.sample.R
 import org.sopt.sample.databinding.ActivitySignUpBinding
 import org.sopt.sample.domain.model.auth.TextInput
 import org.sopt.sample.presentation.common.base.BaseActivity
+import org.sopt.sample.presentation.common.extension.showSnackbar
 import org.sopt.sample.presentation.ui.auth.login.LoginActivity
 import timber.log.Timber
 
@@ -53,20 +54,13 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
     fun signUp() {
         observeData()
         if(viewModel.isSignUpSuccess()) {
-            showSnackBar(
-                    view = binding.root,
-                    message = getString(R.string.signup_success_text)
-            )
+            binding.root.showSnackbar(getString(R.string.signup_success_text))
             navigateToLogin()
         }
         else {
-            showSnackBar(
-                view = binding.root,
-                message = getString(R.string.signup_error_text)
-            )
+            binding.root.showSnackbar(getString(R.string.signup_error_text))
         }
     }
-
 
     private fun observeData() {
         with(viewModel) {
@@ -84,16 +78,6 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
         }
         setResult(RESULT_OK, intent)
         if (!isFinishing) finish()
-    }
-
-    private fun showSnackBar(view: View, message: String) {
-        Snackbar.make(
-            binding.root,
-            message,
-            Snackbar.LENGTH_SHORT
-        ).apply {
-            if(view != binding.root) anchorView = view
-        }.show()
     }
 
     companion object {

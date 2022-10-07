@@ -2,16 +2,15 @@ package org.sopt.sample.presentation.ui.auth.login
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import com.google.android.material.snackbar.Snackbar
 import org.sopt.sample.R
 import org.sopt.sample.databinding.ActivityLoginBinding
 import org.sopt.sample.domain.model.auth.TextInput
 import org.sopt.sample.presentation.common.base.BaseActivity
+import org.sopt.sample.presentation.common.extension.showSnackbar
+import org.sopt.sample.presentation.common.extension.showToast
 import org.sopt.sample.presentation.ui.auth.signup.SignUpActivity
 import org.sopt.sample.presentation.ui.home.introduce.IntroduceActivity
 import timber.log.Timber
@@ -70,19 +69,11 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
     fun login() {
         observeData()
         if(viewModel.isSuccessLogin()) {
-            Toast.makeText(
-                this,
-                getString(R.string.login_success_text),
-                Toast.LENGTH_SHORT
-            ).show()
-
+            showToast(message = getString(R.string.login_success_text))
             navigateToMain()
         }
         else {
-            showSnackBar(
-                binding.root,
-                getString(R.string.login_error_text)
-            )
+            binding.root.showSnackbar(message = getString(R.string.login_error_text))
         }
     }
 
@@ -99,17 +90,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
     fun navigateToSignUp() {
         val intent = Intent(this, SignUpActivity::class.java)
         resultLauncher.launch(intent)
-    }
-
-    private fun showSnackBar(view: View, message: String) {
-        Snackbar.make(
-            binding.root,
-            message,
-            Snackbar.LENGTH_SHORT
-        ).apply {
-            if(view != binding.root)
-                anchorView = view
-        }.show()
     }
 
     companion object {
