@@ -101,6 +101,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
             putExtra(USER_ID_KEY, viewModel.userId)
             putExtra(USER_PW_KEY, viewModel.userPw)
             putExtra(USER_MBTI_KEY, viewModel.userMbti)
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
         }
         startActivity(intent)
     }
