@@ -3,6 +3,7 @@ package org.sopt.sample.presentation.ui.auth.login
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
+import android.text.InputType
 import android.text.TextWatcher
 import android.view.View
 import com.google.android.material.snackbar.Snackbar
@@ -24,11 +25,13 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
 
     private fun initView() {
         binding.layoutIdTextInput.apply {
+            isPassword = false
             tvTextInputSign.text = getString(R.string.id_sign_text)
             tiTextInput.hint = getString(R.string.id_hint_text)
         }
 
         binding.layoutPwTextInput.apply {
+            isPassword = true
             tvTextInputSign.text = getString(R.string.pw_sign_text)
             tiTextInput.hint = getString(R.string.pw_hint_text)
         }
@@ -107,5 +110,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
     companion object {
         private const val MIN_LENGTH = 6
         private const val MAX_LENGTH = 10
+
     }
 }
