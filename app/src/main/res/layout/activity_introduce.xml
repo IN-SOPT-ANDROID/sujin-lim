@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="vm"
+            type="org.sopt.sample.presentation.ui.home.introduce.IntroduceViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingHorizontal="@dimen/margin_bg_default"
+        tools:context=".presentation.ui.home.introduce.IntroduceActivity">
+
+        <ImageView
+            android:id="@+id/iv_introduce_profile"
+            android:layout_width="@dimen/size_introduce_image_default"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="1:1"
+            android:src="@mipmap/ic_launcher"
+            android:layout_marginTop="@dimen/margin_bg_vertical_default"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:contentDescription="@string/introduce_profile_desc" />
+
+        <TextView
+            android:id="@+id/tv_introduce_name_sign"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:formatStr="@{@string/introduce_name_sign_text}"
+            app:targetStr="@{vm.userId}"
+            style="@style/Sub1"
+            android:layout_marginTop="@dimen/margin_view_vertical"
+            app:layout_constraintTop_toBottomOf="@id/iv_introduce_profile"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_introduce_mbti_sign"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:formatStr="@{@string/introduce_mbti_sign_text}"
+            app:targetStr="@{vm.userMbti}"
+            style="@style/Sub1"
+            android:layout_marginTop="@dimen/margin_view_vertical"
+            app:layout_constraintTop_toBottomOf="@id/tv_introduce_name_sign"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
