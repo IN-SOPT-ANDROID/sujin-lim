@@ -8,14 +8,14 @@ import androidx.activity.viewModels
 import org.sopt.sample.R
 import org.sopt.sample.databinding.ActivityLoginBinding
 import org.sopt.sample.domain.model.auth.TextInput
-import org.sopt.sample.presentation.common.base.BaseActivity
+import org.sopt.sample.presentation.common.base.BindingActivity
 import org.sopt.sample.presentation.common.extension.showSnackbar
 import org.sopt.sample.presentation.common.extension.showToast
 import org.sopt.sample.presentation.ui.auth.signup.SignUpActivity
 import org.sopt.sample.presentation.ui.introduce.IntroduceActivity
 import timber.log.Timber
 
-class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login) {
+class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_login) {
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
 
     private val viewModel: LoginViewModel by viewModels()

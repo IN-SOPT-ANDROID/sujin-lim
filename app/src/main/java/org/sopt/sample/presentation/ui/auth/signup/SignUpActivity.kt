@@ -2,21 +2,15 @@ package org.sopt.sample.presentation.ui.auth.signup
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.view.View
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import com.google.android.material.snackbar.Snackbar
 import org.sopt.sample.R
 import org.sopt.sample.databinding.ActivitySignUpBinding
 import org.sopt.sample.domain.model.auth.TextInput
-import org.sopt.sample.presentation.common.base.BaseActivity
+import org.sopt.sample.presentation.common.base.BindingActivity
 import org.sopt.sample.presentation.common.extension.showSnackbar
 import org.sopt.sample.presentation.ui.auth.login.LoginActivity
-import timber.log.Timber
 
-class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sign_up) {
+class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_sign_up) {
     private val viewModel: SignUpViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {

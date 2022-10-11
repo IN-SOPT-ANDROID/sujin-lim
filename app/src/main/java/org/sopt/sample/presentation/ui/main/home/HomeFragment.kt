@@ -10,25 +10,12 @@ import androidx.databinding.DataBindingUtil
 import org.sopt.sample.R
 import org.sopt.sample.databinding.FragmentHomeBinding
 import org.sopt.sample.domain.model.home.Repo
+import org.sopt.sample.presentation.common.base.BindingFragment
 
 
-class HomeFragment : Fragment() {
+class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     private lateinit var homeRepoAdapter: HomeRepoAdapter
     private var args: String? = null
-
-    private var _binding: FragmentHomeBinding? = null
-    private val binding: FragmentHomeBinding
-        get() = requireNotNull(_binding)
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        // Inflate the layout for this fragment
-        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -58,12 +45,6 @@ class HomeFragment : Fragment() {
         binding.rvHomeRepo.adapter = homeRepoAdapter
         homeRepoAdapter.updateData(newList = repoList)
     }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
 
     companion object {
 

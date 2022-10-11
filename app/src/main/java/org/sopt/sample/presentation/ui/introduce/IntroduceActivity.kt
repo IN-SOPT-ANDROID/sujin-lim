@@ -4,11 +4,11 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import org.sopt.sample.R
 import org.sopt.sample.databinding.ActivityIntroduceBinding
-import org.sopt.sample.presentation.common.base.BaseActivity
+import org.sopt.sample.presentation.common.base.BindingActivity
 import org.sopt.sample.presentation.ui.auth.login.LoginActivity
 import timber.log.Timber
 
-class IntroduceActivity : BaseActivity<ActivityIntroduceBinding>(R.layout.activity_introduce) {
+class IntroduceActivity : BindingActivity<ActivityIntroduceBinding>(R.layout.activity_introduce) {
     private val viewModel: IntroduceViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
