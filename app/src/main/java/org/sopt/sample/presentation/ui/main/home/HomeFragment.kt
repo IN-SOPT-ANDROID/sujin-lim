@@ -26,17 +26,17 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
     private fun initAdapter() {
         val repoList = listOf(
             Repo(
-                imageId = R.drawable.ic_launcher_foreground,
+                imageId = R.drawable.ic_logo_github,
                 title = "first",
                 desc = "first desc"
             ),
             Repo(
-                imageId = R.drawable.ic_launcher_foreground,
+                imageId = R.drawable.ic_logo_github,
                 title = "second",
                 desc = "second desc"
             ),
             Repo(
-                imageId = R.drawable.ic_launcher_foreground,
+                imageId = R.drawable.ic_logo_github,
                 title = "third",
                 desc = "third desc"
             ),

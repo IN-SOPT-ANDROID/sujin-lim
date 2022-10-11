@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <import type="android.content.Context" />
+        <import type="androidx.core.content.ContextCompat"/>
         <variable
             name="repoItem"
             type="org.sopt.sample.domain.model.home.Repo" />
@@ -12,38 +12,38 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingVertical="20dp">
+        android:paddingHorizontal="@dimen/spacing24"
+        android:paddingVertical="@dimen/spacing20">
 
         <ImageView
             android:id="@+id/iv_item_home_repo_profile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_launcher_foreground"
-            android:layout_marginEnd="10dp"
+            android:layout_width="@dimen/size_repo_image_default"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="1:1"
+            android:src="@{ContextCompat.getDrawable(context, repoItem.imageId)}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:contentDescription="레포 이미지" />
+            android:contentDescription="@string/home_image_desc" />
 
         <TextView
             android:id="@+id/tv_item_home_repo_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{repoItem.title}"
+            style="@style/Sub2"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@id/tv_item_home_repo_desc"
-            app:layout_constraintStart_toEndOf="@id/iv_item_home_repo_profile" />
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
             android:id="@+id/tv_item_home_repo_desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{repoItem.desc}"
-            app:layout_constraintStart_toEndOf="@id/iv_item_home_repo_profile"
+            style="@style/Sub2"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_item_home_repo_title"
-            app:layout_constraintBottom_toBottomOf="parent" />
-
-
-
+            app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

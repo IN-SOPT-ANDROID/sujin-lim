@@ -1,6 +1,7 @@
 package org.sopt.sample.presentation.ui.main
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import org.sopt.sample.R
 import org.sopt.sample.databinding.ActivityMainBinding
 import org.sopt.sample.presentation.common.base.BindingActivity
@@ -17,37 +18,32 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
     }
 
     private fun initBottomNavigation() {
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.fcv_main, HomeFragment())
-            .commitAllowingStateLoss()
+        setFragment(HomeFragment())
 
         binding.bnvMain.setOnItemSelectedListener { item ->
             when(item.itemId) {
                 R.id.menu_home -> {
-                    supportFragmentManager
-                        .beginTransaction()
-                        .replace(R.id.fcv_main, HomeFragment())
-                        .commitAllowingStateLoss()
+                    setFragment(fragment = HomeFragment())
                     return@setOnItemSelectedListener true
                 }
                 R.id.menu_gallery -> {
-                    supportFragmentManager
-                        .beginTransaction()
-                        .replace(R.id.fcv_main, GalleryFragment())
-                        .commitAllowingStateLoss()
+                    setFragment(fragment = GalleryFragment())
                     return@setOnItemSelectedListener true
                 }
                 R.id.menu_search -> {
-                    supportFragmentManager
-                        .beginTransaction()
-                        .replace(R.id.fcv_main, SearchFragment())
-                        .commitAllowingStateLoss()
+                    setFragment(fragment = SearchFragment())
                     return@setOnItemSelectedListener true
                 }
             }
             false
         }
+    }
+
+    private fun setFragment(fragment: Fragment) {
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fcv_main, fragment)
+            .commitAllowingStateLoss()
     }
 
 }
