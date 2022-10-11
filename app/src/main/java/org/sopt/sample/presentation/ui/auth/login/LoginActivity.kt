@@ -12,7 +12,7 @@ import org.sopt.sample.presentation.common.base.BaseActivity
 import org.sopt.sample.presentation.common.extension.showSnackbar
 import org.sopt.sample.presentation.common.extension.showToast
 import org.sopt.sample.presentation.ui.auth.signup.SignUpActivity
-import org.sopt.sample.presentation.ui.home.introduce.IntroduceActivity
+import org.sopt.sample.presentation.ui.introduce.IntroduceActivity
 import timber.log.Timber
 
 class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login) {

@@ -1,4 +1,4 @@
-package org.sopt.sample.presentation.ui.home.introduce
+package org.sopt.sample.presentation.ui.introduce
 
 import android.os.Bundle
 import androidx.activity.viewModels
