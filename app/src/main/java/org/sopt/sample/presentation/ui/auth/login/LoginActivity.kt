@@ -7,7 +7,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import org.sopt.sample.R
 import org.sopt.sample.databinding.ActivityLoginBinding
-import org.sopt.sample.domain.model.auth.TextInput
+import org.sopt.sample.domain.model.auth.TextInputGuide
 import org.sopt.sample.presentation.common.base.BindingActivity
 import org.sopt.sample.presentation.common.extension.showSnackbar
 import org.sopt.sample.presentation.common.extension.showToast
@@ -44,15 +44,15 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
 
     private fun bindingView() {
         binding.activity = this
-        binding.layoutIdTextInput.textInput =
-            TextInput(
+        binding.layoutIdTextInput.textInputGuide =
+            TextInputGuide(
                 sign = getString(R.string.id_sign_text),
                 hint = getString(R.string.id_hint_text),
                 isPassword = false
             )
 
-        binding.layoutPwTextInput.textInput =
-            TextInput(
+        binding.layoutPwTextInput.textInputGuide =
+            TextInputGuide(
                 sign = getString(R.string.pw_sign_text),
                 hint = getString(R.string.pw_hint_text),
                 isPassword = true

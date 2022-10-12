@@ -12,6 +12,10 @@
     <dimen name="spacing24">24dp</dimen>
     <dimen name="spacing40">40dp</dimen>
 
+    <!-- corner -->
+    <dimen name="corner6">6dp</dimen>
+
+
     <!-- image -->
-    <dimen name="size_repo_image_default">40dp</dimen>
+    <dimen name="size_repo_image_default">50dp</dimen>
 </resources>

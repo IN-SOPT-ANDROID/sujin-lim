@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="headerTitle"
+            type="String" />
     </data>
 
     <com.google.android.material.appbar.AppBarLayout
@@ -16,9 +18,10 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/white"
-            app:navigationIcon="@drawable/ic_back"
-            app:contentInsetStartWithNavigation="0dp"
-            app:titleTextColor="@color/white" />
+            app:title="@{headerTitle}"
+            app:titleCentered="true"
+            app:titleTextAppearance="@style/T2"
+            app:titleTextColor="@color/navy_700" />
 
     </com.google.android.material.appbar.AppBarLayout>
 </layout>

@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{repoItem.title}"
-            style="@style/Sub2"
+            style="@style/B2"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@id/tv_item_home_repo_desc"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -41,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{repoItem.desc}"
-            style="@style/Sub2"
+            style="@style/B2"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_item_home_repo_title"
             app:layout_constraintEnd_toEndOf="parent" />

@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import org.sopt.sample.R
 import org.sopt.sample.databinding.ActivitySignUpBinding
-import org.sopt.sample.domain.model.auth.TextInput
+import org.sopt.sample.domain.model.auth.TextInputGuide
 import org.sopt.sample.presentation.common.base.BindingActivity
 import org.sopt.sample.presentation.common.extension.showSnackbar
 import org.sopt.sample.presentation.ui.auth.login.LoginActivity
@@ -21,7 +21,7 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
     private fun bindingView() {
         binding.activity = this
         binding.layoutIdTextInput.apply {
-            textInput = TextInput(
+            textInputGuide = TextInputGuide(
                 sign = getString(R.string.id_sign_text),
                 hint = getString(R.string.id_hint_text),
                 isPassword = false
@@ -29,7 +29,7 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
         }
 
         binding.layoutPwTextInput.apply {
-            textInput = TextInput(
+            textInputGuide = TextInputGuide(
                 sign = getString(R.string.pw_sign_text),
                 hint = getString(R.string.pw_hint_text),
                 isPassword = true
@@ -37,7 +37,7 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
         }
 
         binding.layoutMbtiTextInput.apply {
-            textInput = TextInput(
+            textInputGuide = TextInputGuide(
                 sign = getString(R.string.mbti_sign_text),
                 hint = getString(R.string.mbti_hint_text),
                 isPassword = false

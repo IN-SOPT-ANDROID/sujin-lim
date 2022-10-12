@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- focus -->
+<!--    <item android:color="@android:color/transparent" android:state_focused="true" />-->
+<!--    <item android:color="@android:color/transparent" android:state_enabled="true" />-->
+
+    <!-- no focus -->
+<!--    <item android:color="@android:color/transparent" android:state_focused="false" />-->
+<!--    <item  android:color="@color/gray_200" android:state_enabled="false"/>-->
+    <item android:color="@color/gray_200"  />
+</selector>
