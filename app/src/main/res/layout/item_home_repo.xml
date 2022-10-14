@@ -6,7 +6,7 @@
         <import type="androidx.core.content.ContextCompat"/>
         <variable
             name="repoItem"
-            type="org.sopt.sample.domain.model.home.Repo" />
+            type="org.sopt.sample.domain.model.home.RepoInfo" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

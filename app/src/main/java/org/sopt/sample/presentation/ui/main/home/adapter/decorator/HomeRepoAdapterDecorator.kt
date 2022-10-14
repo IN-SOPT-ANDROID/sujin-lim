@@ -29,7 +29,7 @@ class HomeRepoAdapterDecorator: RecyclerView.ItemDecoration() {
         val left = parent.paddingStart.toFloat()
         val right = (parent.width - parent.paddingEnd).toFloat()
 
-        for (i in 0 until parent.childCount) {
+        for (i in 1 until parent.childCount) {
             val child = parent.getChildAt(i)
             val layoutParams = child.layoutParams as RecyclerView.LayoutParams
             val top = (child.bottom + layoutParams.bottomMargin).toFloat()

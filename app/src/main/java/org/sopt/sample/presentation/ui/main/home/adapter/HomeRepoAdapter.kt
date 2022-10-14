@@ -6,11 +6,15 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import org.sopt.sample.databinding.ItemHomeRepoBinding
-import org.sopt.sample.domain.model.home.Repo
+import org.sopt.sample.domain.model.home.RepoInfo
 
 class HomeRepoAdapter(
-    private val onItemClick: (Repo) -> Unit
-) : ListAdapter<Repo, HomeRepoAdapter.ViewHolder>(diffCallback) {
+    private val onItemClick: (RepoInfo) -> Unit
+) : ListAdapter<RepoInfo, HomeRepoAdapter.ViewHolder>(diffCallback) {
+
+    init {
+        setHasStableIds(true)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding: ItemHomeRepoBinding = ItemHomeRepoBinding.inflate(
@@ -27,10 +31,14 @@ class HomeRepoAdapter(
         }
     }
 
+    override fun getItemId(position: Int): Long {
+        return position.toLong()
+    }
+
     inner class ViewHolder(private val binding: ItemHomeRepoBinding)
         : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(repo: Repo) {
+        fun bind(repo: RepoInfo) {
             binding.apply {
                 repoItem = repo
                 clItemNewsLayout.setOnClickListener {
@@ -41,12 +49,12 @@ class HomeRepoAdapter(
     }
 
     companion object {
-        private val diffCallback = object : DiffUtil.ItemCallback<Repo>(){
-            override fun areItemsTheSame(oldItem: Repo, newItem: Repo): Boolean {
+        private val diffCallback = object : DiffUtil.ItemCallback<RepoInfo>(){
+            override fun areItemsTheSame(oldItem: RepoInfo, newItem: RepoInfo): Boolean {
                 return oldItem.title == newItem.title
             }
 
-            override fun areContentsTheSame(oldItem: Repo, newItem: Repo): Boolean {
+            override fun areContentsTheSame(oldItem: RepoInfo, newItem: RepoInfo): Boolean {
                 return oldItem == newItem
             }
         }
