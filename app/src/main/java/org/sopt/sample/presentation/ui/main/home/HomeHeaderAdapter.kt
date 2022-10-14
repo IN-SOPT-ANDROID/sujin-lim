@@ -3,9 +3,7 @@ package org.sopt.sample.presentation.ui.main.home
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import org.sopt.sample.databinding.ItemHomeRepoBinding
 import org.sopt.sample.databinding.LayoutHeaderBinding
-import org.sopt.sample.domain.model.home.Repo
 
 class HomeHeaderAdapter() : RecyclerView.Adapter<HomeHeaderAdapter.ViewHolder>() {
     private var headerTitle = ""

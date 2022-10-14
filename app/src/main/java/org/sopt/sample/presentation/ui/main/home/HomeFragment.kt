@@ -12,6 +12,7 @@ import org.sopt.sample.R
 import org.sopt.sample.databinding.FragmentHomeBinding
 import org.sopt.sample.domain.model.home.Repo
 import org.sopt.sample.presentation.common.base.BindingFragment
+import timber.log.Timber
 
 
 class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home) {
@@ -31,13 +32,17 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
     }
 
     private fun initAdapter() {
-        homeRepoAdapter = HomeRepoAdapter()
-        homeRepoAdapter.updateData(newList = repoList)
+        homeRepoAdapter = HomeRepoAdapter(onItemClick = { selectRepo(repo = it) })
+        homeRepoAdapter.submitList(repoList)
 
         homeHeaderAdapter = HomeHeaderAdapter()
         homeHeaderAdapter.updateTitle(title = "홈")
 
         binding.rvHomeRepo.adapter = ConcatAdapter(homeHeaderAdapter, homeRepoAdapter)
+
+    }
+
+    private fun selectRepo(repo: Repo) {
 
     }
 
