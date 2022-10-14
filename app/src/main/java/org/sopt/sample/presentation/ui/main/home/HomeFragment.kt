@@ -10,6 +10,7 @@ import org.sopt.sample.domain.model.home.Repo
 import org.sopt.sample.presentation.common.base.BindingFragment
 import org.sopt.sample.presentation.ui.main.home.adapter.HomeHeaderAdapter
 import org.sopt.sample.presentation.ui.main.home.adapter.HomeRepoAdapter
+import org.sopt.sample.presentation.ui.main.home.adapter.decorator.HomeRepoAdapterDecorator
 
 
 class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home) {
@@ -20,23 +21,20 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // args = requireArguments().getString("key")
-        initView()
-        initAdapter()
+        initRecyclerView()
     }
 
-    private fun initView() {
-
-    }
-
-    private fun initAdapter() {
+    private fun initRecyclerView() {
         homeRepoAdapter = HomeRepoAdapter(onItemClick = { selectRepo(repo = it) })
         homeRepoAdapter.submitList(repoList)
 
         homeHeaderAdapter = HomeHeaderAdapter()
         homeHeaderAdapter.updateTitle(title = "홈")
 
-        binding.rvHomeRepo.adapter = ConcatAdapter(homeHeaderAdapter, homeRepoAdapter)
-
+        binding.rvHomeRepo.apply {
+            adapter = ConcatAdapter(homeHeaderAdapter, homeRepoAdapter)
+            addItemDecoration(HomeRepoAdapterDecorator())
+        }
     }
 
     private fun selectRepo(repo: Repo) {
