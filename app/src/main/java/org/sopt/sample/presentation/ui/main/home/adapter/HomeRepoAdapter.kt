@@ -1,4 +1,4 @@
-package org.sopt.sample.presentation.ui.main.home
+package org.sopt.sample.presentation.ui.main.home.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -11,7 +11,6 @@ import org.sopt.sample.domain.model.home.Repo
 class HomeRepoAdapter(
     private val onItemClick: (Repo) -> Unit
 ) : ListAdapter<Repo, HomeRepoAdapter.ViewHolder>(diffCallback) {
-    // private var repoList = listOf<Repo>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding: ItemHomeRepoBinding = ItemHomeRepoBinding.inflate(
@@ -27,11 +26,6 @@ class HomeRepoAdapter(
             holder.bind(repo = it)
         }
     }
-
-//    fun updateData(newList: List<Repo>) {
-//        repoList = newList.toList()
-//        notifyDataSetChanged()
-//    }
 
     inner class ViewHolder(private val binding: ItemHomeRepoBinding)
         : RecyclerView.ViewHolder(binding.root) {

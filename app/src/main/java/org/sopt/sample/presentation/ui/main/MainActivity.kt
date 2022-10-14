@@ -37,6 +37,14 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
             }
             false
         }
+
+        binding.bnvMain.setOnItemReselectedListener { item ->
+            when(item.itemId) {
+                R.id.menu_home -> {
+                    binding.fcvMain.getFragment<HomeFragment>().scrollToTop()
+                }
+            }
+        }
     }
 
     private fun setFragment(fragment: Fragment) {

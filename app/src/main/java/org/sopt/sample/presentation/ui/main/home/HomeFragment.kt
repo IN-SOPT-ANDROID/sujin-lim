@@ -1,18 +1,15 @@
 package org.sopt.sample.presentation.ui.main.home
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.os.bundleOf
-import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.ConcatAdapter
 import org.sopt.sample.R
 import org.sopt.sample.databinding.FragmentHomeBinding
 import org.sopt.sample.domain.model.home.Repo
 import org.sopt.sample.presentation.common.base.BindingFragment
-import timber.log.Timber
+import org.sopt.sample.presentation.ui.main.home.adapter.HomeHeaderAdapter
+import org.sopt.sample.presentation.ui.main.home.adapter.HomeRepoAdapter
 
 
 class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home) {
@@ -44,6 +41,10 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
 
     private fun selectRepo(repo: Repo) {
 
+    }
+
+    fun scrollToTop() {
+        binding.rvHomeRepo.smoothScrollToPosition(0)
     }
 
     companion object {
@@ -93,6 +94,11 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
                 imageId = R.drawable.ic_logo_github,
                 title = "9 title",
                 desc = "9 desc"
+            ),
+            Repo(
+                imageId = R.drawable.ic_logo_github,
+                title = "10 title",
+                desc = "10 desc"
             ),
         )
 

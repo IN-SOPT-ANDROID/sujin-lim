@@ -1,4 +1,4 @@
-package org.sopt.sample.presentation.ui.main.home
+package org.sopt.sample.presentation.ui.main.home.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
