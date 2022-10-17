@@ -5,4 +5,17 @@
     <dimen name="padding_btn_vertical_default">12dp</dimen>
     <dimen name="size_introduce_image_default">100dp</dimen>
     <dimen name="margin_view_vertical">12dp</dimen>
+
+    <!-- spacing -->
+    <dimen name="spacing12">12dp</dimen>
+    <dimen name="spacing20">20dp</dimen>
+    <dimen name="spacing24">24dp</dimen>
+    <dimen name="spacing40">40dp</dimen>
+
+    <!-- corner -->
+    <dimen name="corner6">6dp</dimen>
+
+
+    <!-- image -->
+    <dimen name="size_repo_image_default">50dp</dimen>
 </resources>

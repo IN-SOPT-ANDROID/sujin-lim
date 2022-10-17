@@ -6,20 +6,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 
-abstract class BaseActivity<T : ViewDataBinding>(@LayoutRes val layoutRes: Int) : AppCompatActivity() {
+abstract class BindingActivity<T : ViewDataBinding>(@LayoutRes val layoutRes: Int) : AppCompatActivity() {
 
-    private var _binding: T? = null
-    val binding: T
-        get() = requireNotNull(_binding)
+    lateinit var binding: T
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = DataBindingUtil.setContentView(this, layoutRes)
+        binding = DataBindingUtil.setContentView(this, layoutRes)
         binding.lifecycleOwner = this
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
     }
 }

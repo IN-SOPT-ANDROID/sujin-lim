@@ -5,6 +5,25 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
+
+    <!-- gray scale -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="gray_100">#F2F2F2</color>
+    <color name="gray_200">#D9D9D9</color>
+    <color name="gray_300">#B3B3B3</color>
+    <color name="gray_400">#999999</color>
+    <color name="gray_500">#808080</color>
+    <color name="gray_600">#666666</color>
+    <color name="gray_700">#4D4D4D</color>
+    <color name="gray_800">#333333</color>
+    <color name="gray_900">#1A1A1A</color>
+
+    <!-- dark background -->
+    <color name="navy_700">#0F1B2B</color>
+    <color name="navy_200">#2B3543</color>
+
+    <!-- highlight -->
+    <color name="red">#E93B65</color>
+
 </resources>
