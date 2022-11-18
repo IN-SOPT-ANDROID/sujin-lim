@@ -6,11 +6,15 @@ import androidx.recyclerview.widget.RecyclerView
 import org.sopt.sample.databinding.LayoutHeaderBinding
 
 class HomeHeaderAdapter() : RecyclerView.Adapter<HomeHeaderAdapter.ViewHolder>() {
+    private lateinit var inflater: LayoutInflater
     private var headerTitle = ""
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        if (!::inflater.isInitialized)
+            inflater = LayoutInflater.from(parent.context)
+
         val binding: LayoutHeaderBinding = LayoutHeaderBinding.inflate(
-            LayoutInflater.from(parent.context),
+            inflater,
             parent,
             false
         )
@@ -33,10 +37,5 @@ class HomeHeaderAdapter() : RecyclerView.Adapter<HomeHeaderAdapter.ViewHolder>()
         fun bind(title: String) {
             binding.headerTitle = title
         }
-    }
-
-
-    companion object {
-
     }
 }

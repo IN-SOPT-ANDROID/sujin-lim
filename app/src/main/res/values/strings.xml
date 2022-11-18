@@ -29,5 +29,7 @@
     <string name="home_header_title">홈</string>
     <string name="home_image_desc">레포지토리 이미지입니다.</string>
 
+    <!-- rror -->
+    <string name="error_not_found_menu_item">Not found menu item id</string>
 
 </resources>

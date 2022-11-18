@@ -11,14 +11,18 @@ import org.sopt.sample.domain.model.home.RepoInfo
 class HomeRepoAdapter(
     private val onItemClick: (RepoInfo) -> Unit
 ) : ListAdapter<RepoInfo, HomeRepoAdapter.ViewHolder>(diffCallback) {
+    private lateinit var inflater: LayoutInflater
 
     init {
         setHasStableIds(true)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        if (!::inflater.isInitialized)
+            inflater = LayoutInflater.from(parent.context)
+
         val binding: ItemHomeRepoBinding = ItemHomeRepoBinding.inflate(
-            LayoutInflater.from(parent.context),
+            inflater,
             parent,
             false
         )
@@ -26,9 +30,7 @@ class HomeRepoAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        getItem(position).let {
-            holder.bind(repo = it)
-        }
+        holder.bind(repo = getItem(position))
     }
 
     override fun getItemId(position: Int): Long {

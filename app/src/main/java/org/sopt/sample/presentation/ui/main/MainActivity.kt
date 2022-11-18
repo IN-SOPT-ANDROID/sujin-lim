@@ -5,9 +5,11 @@ import androidx.fragment.app.Fragment
 import org.sopt.sample.R
 import org.sopt.sample.databinding.ActivityMainBinding
 import org.sopt.sample.presentation.common.base.BindingActivity
+import org.sopt.sample.presentation.common.extension.replace
 import org.sopt.sample.presentation.ui.main.gallery.GalleryFragment
 import org.sopt.sample.presentation.ui.main.home.HomeFragment
 import org.sopt.sample.presentation.ui.main.search.SearchFragment
+import timber.log.Timber
 
 class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main) {
 
@@ -18,24 +20,13 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
     }
 
     private fun initBottomNavigation() {
-        setFragment(HomeFragment())
+        changeFragment(R.id.menu_home)
 
-        binding.bnvMain.setOnItemSelectedListener { item ->
-            when(item.itemId) {
-                R.id.menu_home -> {
-                    setFragment(fragment = HomeFragment())
-                    return@setOnItemSelectedListener true
-                }
-                R.id.menu_gallery -> {
-                    setFragment(fragment = GalleryFragment())
-                    return@setOnItemSelectedListener true
-                }
-                R.id.menu_search -> {
-                    setFragment(fragment = SearchFragment())
-                    return@setOnItemSelectedListener true
-                }
+        binding.bnvMain.run {
+            setOnItemSelectedListener {
+                changeFragment(it.itemId)
+                true
             }
-            false
         }
 
         binding.bnvMain.setOnItemReselectedListener { item ->
@@ -47,11 +38,11 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
         }
     }
 
-    private fun setFragment(fragment: Fragment) {
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.fcv_main, fragment)
-            .commitAllowingStateLoss()
+    private fun changeFragment(menuItemId: Int) = when (menuItemId) {
+        R.id.menu_home -> replace<HomeFragment>(R.id.fcv_main, HomeFragment::class.java.simpleName)
+        R.id.menu_gallery -> replace<GalleryFragment>(R.id.fcv_main)
+        R.id.menu_search -> replace<SearchFragment>(R.id.fcv_main)
+        else -> Timber.e(IllegalArgumentException(getString(R.string.error_not_found_menu_item)))
     }
 
 }

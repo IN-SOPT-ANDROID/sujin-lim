@@ -16,16 +16,14 @@ import org.sopt.sample.presentation.ui.main.home.adapter.decorator.HomeRepoAdapt
 class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     private lateinit var homeRepoAdapter: HomeRepoAdapter
     private lateinit var homeHeaderAdapter: HomeHeaderAdapter
-    private var args: String? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // args = requireArguments().getString("key")
         initRecyclerView()
     }
 
     private fun initRecyclerView() {
-        homeRepoAdapter = HomeRepoAdapter(onItemClick = { selectRepo(repo = it) })
+        homeRepoAdapter = HomeRepoAdapter(:: selectRepo)
         homeRepoAdapter.submitList(repoList)
 
         homeHeaderAdapter = HomeHeaderAdapter()
