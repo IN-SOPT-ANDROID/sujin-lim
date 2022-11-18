@@ -1,16 +1,16 @@
-package org.sopt.sample.presentation.ui.main.home.adapter
+package org.sopt.sample.presentation.ui.home.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import org.sopt.sample.databinding.ItemHomeRepoBinding
-import org.sopt.sample.domain.model.home.RepoInfo
+import org.sopt.sample.databinding.ItemHomeUserBinding
+import org.sopt.sample.domain.model.home.User
 
-class HomeRepoAdapter(
-    private val onItemClick: (RepoInfo) -> Unit
-) : ListAdapter<RepoInfo, HomeRepoAdapter.ViewHolder>(diffCallback) {
+class HomeUsersAdapter(
+    private val onItemClick: (User) -> Unit
+) : ListAdapter<User, HomeUsersAdapter.ViewHolder>(diffCallback) {
     private lateinit var inflater: LayoutInflater
 
     init {
@@ -21,7 +21,7 @@ class HomeRepoAdapter(
         if (!::inflater.isInitialized)
             inflater = LayoutInflater.from(parent.context)
 
-        val binding: ItemHomeRepoBinding = ItemHomeRepoBinding.inflate(
+        val binding: ItemHomeUserBinding = ItemHomeUserBinding.inflate(
             inflater,
             parent,
             false
@@ -30,33 +30,33 @@ class HomeRepoAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(repo = getItem(position))
+        holder.bind(user = getItem(position))
     }
 
     override fun getItemId(position: Int): Long {
         return position.toLong()
     }
 
-    inner class ViewHolder(private val binding: ItemHomeRepoBinding)
+    inner class ViewHolder(private val binding: ItemHomeUserBinding)
         : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(repo: RepoInfo) {
+        fun bind(user: User) {
             binding.apply {
-                repoItem = repo
-                clItemNewsLayout.setOnClickListener {
-                    onItemClick.invoke(repo)
+                userItem = user
+                clItemUserLayout.setOnClickListener {
+                    onItemClick.invoke(user)
                 }
             }
         }
     }
 
     companion object {
-        private val diffCallback = object : DiffUtil.ItemCallback<RepoInfo>(){
-            override fun areItemsTheSame(oldItem: RepoInfo, newItem: RepoInfo): Boolean {
-                return oldItem.title == newItem.title
+        private val diffCallback = object : DiffUtil.ItemCallback<User>(){
+            override fun areItemsTheSame(oldItem: User, newItem: User): Boolean {
+                return oldItem.id == newItem.id
             }
 
-            override fun areContentsTheSame(oldItem: RepoInfo, newItem: RepoInfo): Boolean {
+            override fun areContentsTheSame(oldItem: User, newItem: User): Boolean {
                 return oldItem == newItem
             }
         }

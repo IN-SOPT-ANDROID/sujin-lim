@@ -2,8 +2,7 @@ package org.sopt.sample.data.remote.service.auth
 
 import org.sopt.sample.data.remote.model.request.auth.RequestLoginDTO
 import org.sopt.sample.data.remote.model.request.auth.RequestSignupDTO
-import org.sopt.sample.data.remote.model.request.auth.ResponseAuthDTO
-import org.sopt.sample.data.remote.model.response.ResponseLoginDTO
+import org.sopt.sample.data.remote.model.response.auth.ResponseAuthDTO
 import retrofit2.Call
 import retrofit2.http.POST
 

@@ -21,6 +21,7 @@ buildscript {
         serialization_version = "1.4.1"
         okhttp_version = "4.10.0"
         retrofit_serialization_converter_version = "0.8.0"
+        glide_version = "4.14.2"
     }
 }
 

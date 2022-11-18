@@ -1,4 +1,4 @@
-package org.sopt.sample.presentation.common.base
+package org.sopt.sample.presentation.common.binding
 
 import android.os.Bundle
 import androidx.annotation.LayoutRes

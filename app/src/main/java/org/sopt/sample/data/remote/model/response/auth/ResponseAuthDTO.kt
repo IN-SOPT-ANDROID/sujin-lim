@@ -1,4 +1,4 @@
-package org.sopt.sample.data.remote.model.request.auth
+package org.sopt.sample.data.remote.model.response.auth
 
 import kotlinx.serialization.Serializable
 

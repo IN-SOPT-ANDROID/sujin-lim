@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import org.sopt.sample.R
 import org.sopt.sample.databinding.ActivityIntroduceBinding
-import org.sopt.sample.presentation.common.base.BindingActivity
+import org.sopt.sample.presentation.common.binding.BindingActivity
 import org.sopt.sample.presentation.ui.auth.login.LoginActivity
 import timber.log.Timber
 

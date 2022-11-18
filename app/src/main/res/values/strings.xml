@@ -18,6 +18,7 @@
     <string name="mbti_hint_text">MBTI를 입력하세요</string>
     <string name="signup_done_btn_text">회원가입 완료</string>
     <string name="signup_success_text">회원가입이 완료되었습니다.</string>
+    <string name="signup_fail_text">회원가입에 실패하였습니다.</string>
     <string name="signup_error_text">아이디 또는 비밀번호 양식이 잘못되었습니다.</string>
 
     <!-- Introduce -->
@@ -27,9 +28,9 @@
 
     <!-- Home -->
     <string name="home_header_title">홈</string>
-    <string name="home_image_desc">레포지토리 이미지입니다.</string>
+    <string name="home_image_desc">유저 이미지입니다.</string>
 
-    <!-- rror -->
+    <!-- Error -->
     <string name="error_not_found_menu_item">Not found menu item id</string>
 
 </resources>

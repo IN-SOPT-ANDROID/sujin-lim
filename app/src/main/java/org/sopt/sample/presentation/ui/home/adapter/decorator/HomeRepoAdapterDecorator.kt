@@ -1,4 +1,4 @@
-package org.sopt.sample.presentation.ui.main.home.adapter.decorator
+package org.sopt.sample.presentation.ui.home.adapter.decorator
 
 import android.graphics.Canvas
 import android.graphics.Color
