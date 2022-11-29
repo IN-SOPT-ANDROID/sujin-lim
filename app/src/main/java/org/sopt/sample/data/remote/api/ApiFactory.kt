@@ -3,6 +3,8 @@ package org.sopt.sample.data.remote.api
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import org.sopt.sample.data.remote.api.ApiFactory.reqresRetrofit
 import org.sopt.sample.data.remote.api.ApiFactory.retrofit
 import org.sopt.sample.data.remote.service.auth.AuthService
@@ -13,10 +15,20 @@ object ApiFactory {
     private const val BASE_URL = "http://3.39.169.52:3000/"
     private const val REQRES_BASE_URL = "https://reqres.in/"
 
+    private val client by lazy {
+        OkHttpClient.Builder()
+            .addInterceptor(
+                HttpLoggingInterceptor().apply {
+                    level = HttpLoggingInterceptor.Level.BODY
+                }
+            ).build()
+    }
+
     val retrofit: Retrofit by lazy {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
+            .client(client)
             .build()
     }
 
@@ -24,6 +36,7 @@ object ApiFactory {
         Retrofit.Builder()
             .baseUrl(REQRES_BASE_URL)
             .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
+            .client(client)
             .build()
     }
 

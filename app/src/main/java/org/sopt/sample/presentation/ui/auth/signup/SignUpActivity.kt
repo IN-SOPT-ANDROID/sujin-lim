@@ -15,6 +15,7 @@ import org.sopt.sample.presentation.ui.auth.login.LoginActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import timber.log.Timber
 
 class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_sign_up) {
     private val viewModel: SignUpViewModel by viewModels()
@@ -54,11 +55,6 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
     fun signUp() {
         observeData()
 
-//        if (!viewModel.isSignUpSuccess()) {
-//            binding.root.showSnackbar(getString(R.string.signup_error_text))
-//            return
-//        }
-
         ApiPool.authApi.signup(
             request = RequestSignupDTO(
                 email = viewModel.curId,
@@ -71,15 +67,15 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
                 call: Call<ResponseAuthDTO>,
                 response: Response<ResponseAuthDTO>
             ) {
-                binding.root.showSnackbar(getString(R.string.signup_success_text))
-                navigateToLogin()
+                if (response.isSuccessful) {
+                    binding.root.showSnackbar(getString(R.string.signup_success_text))
+                    navigateToLogin()
+                }
             }
 
             override fun onFailure(call: Call<ResponseAuthDTO>, t: Throwable) {
                 binding.root.showSnackbar(message = getString(R.string.signup_fail_text))
-
             }
-
         })
     }
 
