@@ -3,11 +3,9 @@ package org.sopt.sample.presentation.ui.auth.login
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.launch
 import org.sopt.sample.data.remote.api.ApiPool
-import org.sopt.sample.data.remote.model.request.auth.RequestLoginDTO
-import org.sopt.sample.data.remote.model.response.auth.ResponseAuthDTO
+import org.sopt.sample.data.remote.model.request.auth.RequestLoginDto
+import org.sopt.sample.data.remote.model.response.auth.ResponseAuthDto
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -28,8 +26,8 @@ class LoginViewModel : ViewModel() {
         get() = _userMbti
 
     /** login 결과로 가져온 user result **/
-    private val _loginResult: MutableLiveData<ResponseAuthDTO> = MutableLiveData()
-    val loginResult: LiveData<ResponseAuthDTO>
+    private val _loginResult: MutableLiveData<ResponseAuthDto> = MutableLiveData()
+    val loginResult: LiveData<ResponseAuthDto>
         get() = _loginResult
 
     fun setUserAccount (userId: String, userPw: String) {
@@ -45,22 +43,22 @@ class LoginViewModel : ViewModel() {
 
     fun login() {
         ApiPool.authApi.login(
-            request = RequestLoginDTO(
+            request = RequestLoginDto(
                 email = _userId.value!!,
                 password = _userPw.value!!
             )
         ).enqueue(object :
-            Callback<ResponseAuthDTO> {
+            Callback<ResponseAuthDto> {
             override fun onResponse(
-                call: Call<ResponseAuthDTO>,
-                response: Response<ResponseAuthDTO>
+                call: Call<ResponseAuthDto>,
+                response: Response<ResponseAuthDto>
             ) {
                 if (response.isSuccessful) {
                     _loginResult.value = response.body()
                 }
             }
 
-            override fun onFailure(call: Call<ResponseAuthDTO>, t: Throwable) {
+            override fun onFailure(call: Call<ResponseAuthDto>, t: Throwable) {
                 // TODO : error handling
                 // binding.root.showSnackbar(message = getString(R.string.login_error_text))
             }

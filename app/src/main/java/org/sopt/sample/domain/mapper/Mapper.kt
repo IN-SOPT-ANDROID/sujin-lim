@@ -1,10 +1,10 @@
 package org.sopt.sample.domain.mapper
 
-import org.sopt.sample.data.remote.model.response.home.UserDTO
+import org.sopt.sample.data.remote.model.response.home.UserDto
 import org.sopt.sample.domain.model.home.User
 
 object Mapper {
-    fun getUsersMapper(response: List<UserDTO>): List<User> {
+    fun getUsersMapper(response: List<UserDto>): List<User> {
         val users = if (response.isEmpty()) {
             listOf<User>()
         } else {

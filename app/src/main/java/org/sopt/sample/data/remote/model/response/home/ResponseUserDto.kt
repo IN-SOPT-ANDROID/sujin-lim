@@ -4,18 +4,18 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ResponseUserDTO(
+data class ResponseUserDto(
     val page: Int,
     @SerialName("per_page")
     val perPage: Int,
     val total: Int,
     @SerialName("total_page")
     val totalPage: Int,
-    val data: List<UserDTO>
+    val data: List<UserDto>
 )
 
 @Serializable
-data class UserDTO(
+data class UserDto(
     val id: Int,
     val email: String,
     @SerialName("first_name")

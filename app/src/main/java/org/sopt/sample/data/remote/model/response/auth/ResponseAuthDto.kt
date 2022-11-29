@@ -3,7 +3,7 @@ package org.sopt.sample.data.remote.model.response.auth
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ResponseAuthDTO(
+data class ResponseAuthDto(
     val status: Int,
     val message: String,
     val result: Result
