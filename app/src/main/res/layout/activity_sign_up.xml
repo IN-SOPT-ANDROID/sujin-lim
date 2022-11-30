@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:text="@string/signup_title_text"
             style="@style/H1"
-            android:layout_marginTop="@dimen/margin_bg_vertical_default"
+            android:layout_marginTop="@dimen/spacing40"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -32,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             layout="@layout/layout_text_input"
-            android:layout_marginTop="@dimen/margin_bg_vertical_default"
+            android:layout_marginTop="@dimen/spacing20"
             app:layout_constraintTop_toBottomOf="@id/tv_signup_title"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -41,8 +41,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             layout="@layout/layout_text_input"
-            android:layout_marginTop="@dimen/margin_bg_vertical_default"
+            android:layout_marginTop="@dimen/spacing20"
             app:layout_constraintTop_toBottomOf="@id/layout_id_text_input"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <include
+            android:id="@+id/layout_name_text_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            layout="@layout/layout_text_input"
+            android:layout_marginTop="@dimen/spacing20"
+            app:layout_constraintTop_toBottomOf="@id/layout_pw_text_input"
             app:layout_constraintStart_toStartOf="parent" />
 
         <include
@@ -50,8 +59,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             layout="@layout/layout_text_input"
-            android:layout_marginTop="@dimen/margin_bg_vertical_default"
-            app:layout_constraintTop_toBottomOf="@id/layout_pw_text_input"
+            android:layout_marginTop="@dimen/spacing20"
+            app:layout_constraintTop_toBottomOf="@id/layout_name_text_input"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
@@ -60,8 +69,8 @@
             android:layout_height="wrap_content"
             android:text="@string/signup_done_btn_text"
             android:onClick="@{() -> activity.signUp()}"
-            android:paddingVertical="@dimen/padding_btn_vertical_default"
-            android:layout_marginTop="@dimen/margin_bg_vertical_default"
+            android:paddingVertical="@dimen/spacing12"
+            android:layout_marginTop="@dimen/spacing20"
             app:layout_constraintTop_toBottomOf="@id/layout_mbti_text_input" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

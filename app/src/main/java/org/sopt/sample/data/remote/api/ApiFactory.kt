@@ -7,8 +7,8 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.sopt.sample.data.remote.api.ApiFactory.reqresRetrofit
 import org.sopt.sample.data.remote.api.ApiFactory.retrofit
-import org.sopt.sample.data.remote.service.auth.AuthService
-import org.sopt.sample.data.remote.service.home.HomeService
+import org.sopt.sample.data.remote.api.auth.AuthApi
+import org.sopt.sample.data.remote.api.home.HomeApi
 import retrofit2.Retrofit
 
 object ApiFactory {
@@ -44,6 +44,6 @@ object ApiFactory {
 }
 
 object ApiPool {
-    val authApi = ApiFactory.create<AuthService>(retrofit)
-    val homeApi = ApiFactory.create<HomeService>(reqresRetrofit)
+    val authApi = ApiFactory.create<AuthApi>(retrofit)
+    val homeApi = ApiFactory.create<HomeApi>(reqresRetrofit)
 }

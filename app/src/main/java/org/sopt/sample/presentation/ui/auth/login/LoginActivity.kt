@@ -5,15 +5,15 @@ import android.os.Bundle
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import dagger.hilt.android.AndroidEntryPoint
 import org.sopt.sample.R
 import org.sopt.sample.databinding.ActivityLoginBinding
-import org.sopt.sample.domain.model.auth.TextInputGuide
+import org.sopt.sample.presentation.model.auth.TextInputGuide
 import org.sopt.sample.presentation.common.binding.BindingActivity
-import org.sopt.sample.presentation.common.extension.showToast
 import org.sopt.sample.presentation.ui.auth.signup.SignUpActivity
 import org.sopt.sample.presentation.ui.introduce.IntroduceActivity
-import timber.log.Timber
 
+@AndroidEntryPoint
 class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_login) {
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
 
@@ -68,12 +68,12 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
     }
 
     fun login() {
-        observeData()
-        viewModel.login()
-        viewModel.loginResult.observe(this) {
-            showToast(message = getString(R.string.login_success_text))
-            navigateToMain()
-        }
+//        observeData()
+//        viewModel.login()
+//        viewModel.loginResult.observe(this) {
+//            showToast(message = getString(R.string.login_success_text))
+//            navigateToMain()
+//        }
     }
 
     private fun navigateToMain() {

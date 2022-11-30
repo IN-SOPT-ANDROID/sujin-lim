@@ -1,4 +1,4 @@
-package org.sopt.sample.domain.model.home
+package org.sopt.sample.presentation.model.home
 
 data class User(
     val id: Int,

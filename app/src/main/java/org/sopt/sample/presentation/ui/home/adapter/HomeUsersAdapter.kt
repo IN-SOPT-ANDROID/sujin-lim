@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import org.sopt.sample.databinding.ItemHomeUserBinding
-import org.sopt.sample.domain.model.home.User
+import org.sopt.sample.presentation.model.home.User
 
 class HomeUsersAdapter(
     private val onItemClick: (User) -> Unit

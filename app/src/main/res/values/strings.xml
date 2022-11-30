@@ -16,6 +16,8 @@
     <string name="signup_title_text">SIGNUP</string>
     <string name="mbti_sign_text">MBTI</string>
     <string name="mbti_hint_text">MBTI를 입력하세요</string>
+    <string name="name_sign_text">이름</string>
+    <string name="name_hint_text">이름을 입력하세요</string>
     <string name="signup_done_btn_text">회원가입 완료</string>
     <string name="signup_success_text">회원가입이 완료되었습니다.</string>
     <string name="signup_fail_text">회원가입에 실패하였습니다.</string>

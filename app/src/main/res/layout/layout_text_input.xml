@@ -6,7 +6,7 @@
         <import type="android.text.InputType"/>
         <variable
             name="textInputGuide"
-            type="org.sopt.sample.domain.model.auth.TextInputGuide" />
+            type="org.sopt.sample.presentation.model.auth.TextInputGuide" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

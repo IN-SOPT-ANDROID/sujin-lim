@@ -2,6 +2,7 @@ package org.sopt.sample.data.remote.model.response.home
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import org.sopt.sample.presentation.model.home.User
 
 @Serializable
 data class ResponseUserDto(
@@ -24,4 +25,14 @@ data class UserDto(
     val LastName: String,
     val avatar: String,
 )
+
+fun UserDto.toData(): User {
+    return User(
+        id = this.id,
+        name = this.firstName,
+        email = this.email,
+        profileUrl = this.avatar
+    )
+}
+
 

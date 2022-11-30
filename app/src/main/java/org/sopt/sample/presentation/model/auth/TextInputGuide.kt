@@ -1,4 +1,4 @@
-package org.sopt.sample.domain.model.auth
+package org.sopt.sample.presentation.model.auth
 
 data class TextInputGuide(
     val sign: String,
