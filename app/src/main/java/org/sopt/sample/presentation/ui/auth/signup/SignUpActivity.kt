@@ -10,6 +10,7 @@ import org.sopt.sample.databinding.ActivitySignUpBinding
 import org.sopt.sample.presentation.model.auth.TextInputGuide
 import org.sopt.sample.presentation.common.binding.BindingActivity
 import org.sopt.sample.presentation.common.extension.showSnackbar
+import org.sopt.sample.presentation.state.UiState
 import org.sopt.sample.presentation.ui.auth.login.LoginActivity
 
 @AndroidEntryPoint
@@ -60,7 +61,8 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
         setUserInfo()
         if (viewModel.isMatchSignUpInput()) {
             viewModel.signUp()
-            navigateToLogin()
+            if (viewModel.signupState.value is UiState.Success)
+                navigateToLogin()
         }
         else {
             binding.root.showSnackbar(getString(R.string.signup_error_text))

@@ -9,6 +9,7 @@ import kotlinx.coroutines.launch
 import org.sopt.sample.data.remote.model.request.auth.RequestSignupDto
 import org.sopt.sample.data.remote.model.response.auth.ResponseAuthDto
 import org.sopt.sample.data.remote.repository.RemoteRepository
+import org.sopt.sample.presentation.state.UiState
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -21,13 +22,13 @@ class SignUpViewModel @Inject constructor(
     val userName = MutableLiveData<String>()
     val userMbti = MutableLiveData<String>()
 
-    /** signup 결과로 가져온 user result **/
-    private val _signupResult: MutableLiveData<ResponseAuthDto> = MutableLiveData()
-    val signupResult: LiveData<ResponseAuthDto>
-        get() = _signupResult
+    private val _signupState: MutableLiveData<UiState<ResponseAuthDto>> = MutableLiveData()
+    val signupState: LiveData<UiState<ResponseAuthDto>>
+        get() = _signupState
 
     fun signUp() {
         viewModelScope.launch {
+            _signupState.value = UiState.Loading(true)
             kotlin.runCatching {
                 remoteRepository.signup(
                     RequestSignupDto(
@@ -38,10 +39,12 @@ class SignUpViewModel @Inject constructor(
                 )
             }
                 .onSuccess {
-                    _signupResult.value = it
+                    _signupState.value = UiState.Loading(false)
+                    _signupState.value = UiState.Success(it)
                 }
                 .onFailure {
-                    Timber.e(it)
+                    _signupState.value = UiState.Loading(false)
+                    _signupState.value = UiState.Error(it.toString())
                 }
         }
     }
