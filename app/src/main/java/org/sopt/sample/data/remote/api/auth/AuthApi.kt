@@ -12,5 +12,4 @@ interface AuthApi {
 
     @POST("api/user/signup")
     suspend fun signup(@Body request: RequestSignupDto): ResponseAuthDto
-
 }

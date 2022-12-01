@@ -10,6 +10,10 @@ import org.sopt.sample.R
 import org.sopt.sample.databinding.ActivityLoginBinding
 import org.sopt.sample.presentation.model.auth.TextInputGuide
 import org.sopt.sample.presentation.common.binding.BindingActivity
+import org.sopt.sample.presentation.common.extension.showSnackbar
+import org.sopt.sample.presentation.common.extension.toGone
+import org.sopt.sample.presentation.common.extension.toVisible
+import org.sopt.sample.presentation.state.UiState
 import org.sopt.sample.presentation.ui.auth.signup.SignUpActivity
 import org.sopt.sample.presentation.ui.introduce.IntroduceActivity
 
@@ -23,6 +27,7 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
         super.onCreate(savedInstanceState)
         initLauncher()
         bindingView()
+        observeState()
     }
 
     private fun initLauncher() {
@@ -30,13 +35,13 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
                 if (it.resultCode == RESULT_OK) {
                     val result = it.data
-                    with(viewModel) {
-                        initUserInfo(
-                            userId =  result?.getStringExtra(USER_ID_KEY).toString(),
-                            userPw = result?.getStringExtra(USER_PW_KEY).toString(),
-                            userMbti = result?.getStringExtra(USER_MBTI_KEY).toString()
-                        )
-                    }
+//                    with(viewModel) {
+//                        initUserInfo(
+//                            userId =  result?.getStringExtra(USER_ID_KEY).toString(),
+//                            userPw = result?.getStringExtra(USER_PW_KEY).toString(),
+//                            userMbti = result?.getStringExtra(USER_MBTI_KEY).toString()
+//                        )
+//                    }
                 }
             }
     }
@@ -60,27 +65,42 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
 
     private fun observeData() {
         with(viewModel) {
-            setUserAccount(
-                userId = binding.layoutIdTextInput.etTextInput.text.toString(),
-                userPw = binding.layoutPwTextInput.etTextInput.text.toString()
-            )
+            userId.value = binding.layoutIdTextInput.etTextInput.text.toString()
+            userPw.value = binding.layoutPwTextInput.etTextInput.text.toString()
+        }
+    }
+
+    private fun observeState() {
+        viewModel.loginState.observe(this) {
+            when (it) {
+                is UiState.Loading -> {
+                    binding.pbLoginLoading.toVisible()
+                }
+                is UiState.Success -> {
+                    binding.pbLoginLoading.toGone()
+                    binding.root.showSnackbar(getString(R.string.login_success_text))
+                    navigateToMain()
+                }
+                is UiState.Error -> {
+                    binding.pbLoginLoading.toGone()
+                    binding.root.showSnackbar(getString(R.string.login_error_text))
+                }
+                else -> {
+                    binding.pbLoginLoading.toGone()
+                }
+            }
         }
     }
 
     fun login() {
-//        observeData()
-//        viewModel.login()
-//        viewModel.loginResult.observe(this) {
-//            showToast(message = getString(R.string.login_success_text))
-//            navigateToMain()
-//        }
+        viewModel.login()
     }
 
     private fun navigateToMain() {
         val intent = Intent(this, IntroduceActivity::class.java).apply {
             putExtra(USER_ID_KEY, viewModel.userId.value)
             putExtra(USER_PW_KEY, viewModel.userPw.value)
-            putExtra(USER_MBTI_KEY, viewModel.userMbti.value)
+            // putExtra(USER_MBTI_KEY, viewModel.userMbti.value)
             flags =
                 Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
         }

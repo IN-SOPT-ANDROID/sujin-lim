@@ -3,10 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <import type="android.text.InputType"/>
+
+        <import type="android.text.InputType" />
+
         <variable
             name="textInputGuide"
             type="org.sopt.sample.presentation.model.auth.TextInputGuide" />
+
+<!--        <variable-->
+<!--            name="textContent"-->
+<!--            type="String" />-->
+
+        <variable
+            name="textContent"
+            type="androidx.lifecycle.MutableLiveData&lt;String>" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,31 +25,32 @@
 
         <TextView
             android:id="@+id/tv_text_input_sign"
+            style="@style/B1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{textInputGuide.sign}"
-            style="@style/B1"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/ti_text_input"
+            style="@style/SoptTextInputLayoutStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_marginTop="@dimen/spacing12"
-            style="@style/SoptTextInputLayoutStyle"
             android:hint="@{textInputGuide.hint}"
-            app:layout_constraintTop_toBottomOf="@+id/tv_text_input_sign"
-            app:layout_constraintStart_toStartOf="parent">
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_text_input_sign">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_text_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:singleLine="true"
+                android:inputType="@{textInputGuide.isPassword ? (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD) : InputType.TYPE_CLASS_TEXT}"
                 android:paddingHorizontal="@dimen/spacing12"
-                android:inputType="@{textInputGuide.isPassword ? (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD) : InputType.TYPE_CLASS_TEXT}" />
+                android:singleLine="true"
+                android:text="@={textContent}" />
         </com.google.android.material.textfield.TextInputLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

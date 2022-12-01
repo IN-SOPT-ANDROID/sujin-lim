@@ -10,7 +10,6 @@ import org.sopt.sample.data.remote.model.request.auth.RequestSignupDto
 import org.sopt.sample.data.remote.model.response.auth.ResponseAuthDto
 import org.sopt.sample.data.remote.repository.RemoteRepository
 import org.sopt.sample.presentation.state.UiState
-import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -22,14 +21,16 @@ class SignUpViewModel @Inject constructor(
     val userName = MutableLiveData<String>()
     val userMbti = MutableLiveData<String>()
 
-    private val _signupState: MutableLiveData<UiState<ResponseAuthDto>> = MutableLiveData()
+    private val _signupState: MutableLiveData<UiState<ResponseAuthDto>> =
+        MutableLiveData(UiState.Init)
     val signupState: LiveData<UiState<ResponseAuthDto>>
         get() = _signupState
 
     fun signUp() {
         viewModelScope.launch {
             _signupState.value = UiState.Loading(true)
-            kotlin.runCatching {
+
+            runCatching {
                 remoteRepository.signup(
                     RequestSignupDto(
                         email = userId.value.toString(),
