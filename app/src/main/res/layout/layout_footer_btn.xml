@@ -16,8 +16,10 @@
             android:id="@+id/btn_login_signup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/bg_footer_btn_selector"
             android:text="@{btnText}"
             android:paddingVertical="@dimen/spacing12"
+            android:layout_margin="@dimen/spacing20"
             app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

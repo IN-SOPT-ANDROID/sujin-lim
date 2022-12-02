@@ -27,9 +27,10 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
         super.onCreate(savedInstanceState)
         initLauncher()
         bindingView()
-        observeState()
+        observeData()
     }
 
+    // TODO : 삭제 예정
     private fun initLauncher() {
         resultLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
@@ -48,29 +49,28 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
 
     private fun bindingView() {
         binding.activity = this
-        binding.layoutIdTextInput.textInputGuide =
-            TextInputGuide(
+        binding.viewModel = viewModel
+
+        binding.layoutIdTextInput.apply {
+            textInputGuide = TextInputGuide(
                 sign = getString(R.string.id_sign_text),
                 hint = getString(R.string.id_hint_text),
                 isPassword = false
             )
+            textContent = viewModel.userId
+        }
 
-        binding.layoutPwTextInput.textInputGuide =
-            TextInputGuide(
+        binding.layoutPwTextInput.apply {
+            textInputGuide = TextInputGuide(
                 sign = getString(R.string.pw_sign_text),
                 hint = getString(R.string.pw_hint_text),
                 isPassword = true
             )
-    }
-
-    private fun observeData() {
-        with(viewModel) {
-            userId.value = binding.layoutIdTextInput.etTextInput.text.toString()
-            userPw.value = binding.layoutPwTextInput.etTextInput.text.toString()
+            textContent = viewModel.userId
         }
     }
 
-    private fun observeState() {
+    private fun observeData() {
         viewModel.loginState.observe(this) {
             when (it) {
                 is UiState.Loading -> {
@@ -100,7 +100,6 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
         val intent = Intent(this, IntroduceActivity::class.java).apply {
             putExtra(USER_ID_KEY, viewModel.userId.value)
             putExtra(USER_PW_KEY, viewModel.userPw.value)
-            // putExtra(USER_MBTI_KEY, viewModel.userMbti.value)
             flags =
                 Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
         }

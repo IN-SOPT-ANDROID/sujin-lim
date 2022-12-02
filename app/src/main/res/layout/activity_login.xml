@@ -4,9 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="activity"
             type="org.sopt.sample.presentation.ui.auth.login.LoginActivity" />
+
+        <variable
+            name="viewModel"
+            type="org.sopt.sample.presentation.ui.auth.login.LoginViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,58 +25,60 @@
             android:id="@+id/pb_login_loading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_login_title"
+            style="@style/H1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/login_title_text"
-            style="@style/H1"
             android:layout_marginTop="@dimen/margin_bg_vertical_default"
+            android:text="@string/login_title_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <include
             android:id="@+id/layout_id_text_input"
+            layout="@layout/layout_text_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            layout="@layout/layout_text_input"
             android:layout_marginTop="@dimen/margin_bg_vertical_default"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_login_title"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:textContent="@{viewModel.userId}" />
 
         <include
             android:id="@+id/layout_pw_text_input"
+            layout="@layout/layout_text_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            layout="@layout/layout_text_input"
             android:layout_marginTop="@dimen/margin_bg_vertical_default"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layout_id_text_input"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:textContent="@{viewModel.userPw}" />
 
         <Button
             android:id="@+id/btn_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/login_btn_text"
+            android:layout_marginTop="@dimen/margin_bg_vertical_default"
             android:onClick="@{() -> activity.login()}"
             android:paddingVertical="@dimen/padding_btn_vertical_default"
-            android:layout_marginTop="@dimen/margin_bg_vertical_default"
+            android:text="@string/login_btn_text"
             app:layout_constraintTop_toBottomOf="@id/layout_pw_text_input" />
 
         <Button
             android:id="@+id/btn_login_signup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/signup_btn_text"
+            android:layout_marginTop="@dimen/margin_bg_default"
             android:onClick="@{() -> activity.navigateToSignUp()}"
             android:paddingVertical="@dimen/padding_btn_vertical_default"
-            android:layout_marginTop="@dimen/margin_bg_default"
+            android:text="@string/signup_btn_text"
             app:layout_constraintTop_toBottomOf="@id/btn_login" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

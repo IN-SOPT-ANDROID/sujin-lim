@@ -13,7 +13,6 @@ import org.sopt.sample.presentation.common.extension.toGone
 import org.sopt.sample.presentation.common.extension.toVisible
 import org.sopt.sample.presentation.state.UiState
 import org.sopt.sample.presentation.ui.auth.login.LoginActivity
-import timber.log.Timber
 
 @AndroidEntryPoint
 class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_sign_up) {
@@ -22,7 +21,7 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         bindingView()
-        observeState()
+        observeData()
     }
 
     private fun bindingView() {
@@ -39,6 +38,9 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
         }
 
         binding.layoutPwTextInput.apply {
+            if (viewModel.userPw.value.isNullOrBlank() && !viewModel.isCorrectPw())
+                tiTextInput.error = getString(R.string.signup_pw_error_text)
+
             textInputGuide = TextInputGuide(
                 sign = getString(R.string.pw_sign_text),
                 hint = getString(R.string.pw_hint_text),
@@ -67,14 +69,34 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
     }
 
     fun signUp() {
-        if (viewModel.isMatchSignUpInput()) {
+        if (viewModel.validateSignUpInput()) {
             viewModel.signUp()
         } else {
             binding.root.showSnackbar(getString(R.string.signup_error_text))
         }
     }
 
-    private fun observeState() {
+    private fun observeData() {
+        viewModel.userId.observe(this) {
+            if (!it.isNullOrBlank() && !viewModel.isCorrectId()) {
+                binding.layoutIdTextInput.tiTextInput.error =
+                    getString(R.string.signup_id_error_text)
+            }
+            else {
+                binding.layoutIdTextInput.tiTextInput.isErrorEnabled = false
+            }
+        }
+
+        viewModel.userPw.observe(this) {
+            if (!it.isNullOrBlank() && !viewModel.isCorrectPw()) {
+                binding.layoutPwTextInput.tiTextInput.error =
+                    getString(R.string.signup_pw_error_text)
+            }
+            else {
+                binding.layoutPwTextInput.tiTextInput.isErrorEnabled = false
+            }
+        }
+
         viewModel.signupState.observe(this) {
             when (it) {
                 is UiState.Loading -> {

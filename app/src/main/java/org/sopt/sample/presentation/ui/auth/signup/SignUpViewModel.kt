@@ -16,10 +16,10 @@ import javax.inject.Inject
 class SignUpViewModel @Inject constructor(
     private val remoteRepository: RemoteRepository
 ) : ViewModel() {
-    val userId = MutableLiveData<String>()
-    val userPw = MutableLiveData<String>()
-    val userName = MutableLiveData<String>()
-    val userMbti = MutableLiveData<String>()
+    val userId = MutableLiveData("")
+    val userPw = MutableLiveData("")
+    val userName = MutableLiveData("")
+    val userMbti = MutableLiveData("")
 
     private val _signupState: MutableLiveData<UiState<ResponseAuthDto>> =
         MutableLiveData(UiState.Init)
@@ -50,14 +50,22 @@ class SignUpViewModel @Inject constructor(
         }
     }
 
-    fun isMatchSignUpInput(): Boolean {
-        if (userId.value.isNullOrBlank() || userPw.value.isNullOrBlank() || userName.value.isNullOrBlank())
-            return false
 
-        return userId.value!!.length in ID_MIN_LENGTH..ID_MAX_LENGTH &&
-                userPw.value!!.length in PW_MIN_LENGTH..PW_MAX_LENGTH &&
-                userName.value!!.isNotBlank()
+    // validate
+    fun isCorrectId(): Boolean =
+        idRegex.matches(userId.value ?: "")
+
+    fun isCorrectPw(): Boolean =
+        pwRegex.matches(userPw.value ?: "")
+
+    fun isCorrectName(): Boolean =
+        !userName.value.isNullOrBlank()
+
+    fun validateSignUpInput(): Boolean {
+        if (isCorrectId() && isCorrectPw() && isCorrectName()) return true
+        return false
     }
+
 
     companion object {
         private const val TAG = "SignUpViewModel"
@@ -65,5 +73,10 @@ class SignUpViewModel @Inject constructor(
         private const val ID_MAX_LENGTH = 10
         private const val PW_MIN_LENGTH = 8
         private const val PW_MAX_LENGTH = 12
+
+        private val idRegex =
+            """^(?=.*[a-zA-Z]+)(?=.*[0-9]+).{6,10}${'$'}""".toRegex()
+        private val pwRegex =
+            """^(?=.*[a-zA-Z]+)(?=.*[0-9]+)(?=.*[!@#${'$'}%^&*()~`<>?:']+).{6,12}${'$'}""".toRegex()
     }
 }

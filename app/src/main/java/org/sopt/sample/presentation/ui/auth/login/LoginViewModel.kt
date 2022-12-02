@@ -25,32 +25,6 @@ class LoginViewModel @Inject constructor(
     val loginState: LiveData<UiState<ResponseAuthDto>>
         get() = _loginState
 
-//    private val _userId: MutableLiveData<String> = MutableLiveData("")
-//    val userId: LiveData<String>
-//        get() = _userId
-//
-//
-//    private val _userPw: MutableLiveData<String> = MutableLiveData("")
-//    val userPw: LiveData<String>
-//        get() = _userPw
-//
-//
-//    private val _userMbti: MutableLiveData<String> = MutableLiveData("")
-//    val userMbti: LiveData<String>
-//        get() = _userMbti
-
-
-//    fun setUserAccount(userId: String, userPw: String) {
-//        _userId.value = userId
-//        _userPw.value = userPw
-//    }
-//
-//    fun initUserInfo(userId: String, userPw: String, userMbti: String) {
-//        _userId.value = userId
-//        _userPw.value = userPw
-//        _userMbti.value = userMbti
-//    }
-
     fun login() {
         viewModelScope.launch {
             _loginState.value = UiState.Loading(true)

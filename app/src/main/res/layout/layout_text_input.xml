@@ -10,10 +10,6 @@
             name="textInputGuide"
             type="org.sopt.sample.presentation.model.auth.TextInputGuide" />
 
-<!--        <variable-->
-<!--            name="textContent"-->
-<!--            type="String" />-->
-
         <variable
             name="textContent"
             type="androidx.lifecycle.MutableLiveData&lt;String>" />
