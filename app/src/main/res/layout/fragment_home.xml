@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.ui.main.home.HomeFragment">
+        tools:context=".presentation.ui.home.HomeFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_home_repo"
@@ -20,7 +20,7 @@
             android:orientation="vertical"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            tools:listitem="@layout/item_home_repo"/>
+            tools:listitem="@layout/item_home_user"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

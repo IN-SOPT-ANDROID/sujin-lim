@@ -6,13 +6,19 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import org.sopt.sample.R
+import org.sopt.sample.data.remote.api.ApiPool
+import org.sopt.sample.data.remote.model.request.auth.RequestLoginDTO
+import org.sopt.sample.data.remote.model.response.auth.ResponseAuthDTO
 import org.sopt.sample.databinding.ActivityLoginBinding
 import org.sopt.sample.domain.model.auth.TextInputGuide
-import org.sopt.sample.presentation.common.base.BindingActivity
+import org.sopt.sample.presentation.common.binding.BindingActivity
 import org.sopt.sample.presentation.common.extension.showSnackbar
 import org.sopt.sample.presentation.common.extension.showToast
 import org.sopt.sample.presentation.ui.auth.signup.SignUpActivity
 import org.sopt.sample.presentation.ui.introduce.IntroduceActivity
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import timber.log.Timber
 
 class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_login) {
@@ -27,19 +33,20 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
     }
 
     private fun initLauncher() {
-        resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-            if (it.resultCode == RESULT_OK) {
-                val result = it.data
-                with(viewModel) {
-                    userId = result?.getStringExtra(USER_ID_KEY).toString()
-                    userPw = result?.getStringExtra(USER_PW_KEY).toString()
-                    userMbti = result?.getStringExtra(USER_MBTI_KEY).toString()
-                    Timber.tag(TAG).e(userId)
-                    Timber.tag(TAG).e(userPw)
-                    Timber.tag(TAG).e(userMbti)
+        resultLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+                if (it.resultCode == RESULT_OK) {
+                    val result = it.data
+                    with(viewModel) {
+                        userId = result?.getStringExtra(USER_ID_KEY).toString()
+                        userPw = result?.getStringExtra(USER_PW_KEY).toString()
+                        userMbti = result?.getStringExtra(USER_MBTI_KEY).toString()
+                        Timber.tag(TAG).e(userId)
+                        Timber.tag(TAG).e(userPw)
+                        Timber.tag(TAG).e(userMbti)
+                    }
                 }
             }
-        }
     }
 
     private fun bindingView() {
@@ -68,21 +75,49 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
 
     fun login() {
         observeData()
-        if(viewModel.isSuccessLogin()) {
-            showToast(message = getString(R.string.login_success_text))
-            navigateToMain()
-        }
-        else {
-            binding.root.showSnackbar(message = getString(R.string.login_error_text))
-        }
+//        if (!viewModel.isSuccessLogin()) {
+//            binding.root.showSnackbar(message = getString(R.string.login_error_text))
+//            return
+//        }
+
+        ApiPool.authApi.login(
+            request = RequestLoginDTO(
+                email = viewModel.curId,
+                password = viewModel.curPw
+            )
+        ).enqueue(object :
+            Callback<ResponseAuthDTO> {
+            override fun onResponse(
+                call: Call<ResponseAuthDTO>,
+                response: Response<ResponseAuthDTO>
+            ) {
+                showToast(message = getString(R.string.login_success_text))
+                navigateToMain()
+            }
+
+            override fun onFailure(call: Call<ResponseAuthDTO>, t: Throwable) {
+                binding.root.showSnackbar(message = getString(R.string.login_error_text))
+            }
+        })
     }
+
+//    fun login() {
+//        observeData()
+//        if (viewModel.isSuccessLogin()) {
+//            showToast(message = getString(R.string.login_success_text))
+//            navigateToMain()
+//        } else {
+//            binding.root.showSnackbar(message = getString(R.string.login_error_text))
+//        }
+//    }
 
     private fun navigateToMain() {
         val intent = Intent(this, IntroduceActivity::class.java).apply {
             putExtra(USER_ID_KEY, viewModel.userId)
             putExtra(USER_PW_KEY, viewModel.userPw)
             putExtra(USER_MBTI_KEY, viewModel.userMbti)
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+            flags =
+                Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
         }
         startActivity(intent)
     }

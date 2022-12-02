@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+    id 'org.jetbrains.kotlin.plugin.serialization' version '1.7.10'
 }
 
 android {
@@ -50,9 +51,25 @@ dependencies {
     implementation "androidx.activity:activity-ktx:$activity_version"
     implementation "androidx.fragment:fragment-ktx:$fragment_version"
 
+    // serialization
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:$serialization_version"
+
+    // retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:$retrofit_serialization_converter_version"
+
+    // okhttp
+    implementation(platform("com.squareup.okhttp3:okhttp-bom:$okhttp_version"))
+    implementation "com.squareup.okhttp3:okhttp"
+    implementation "com.squareup.okhttp3:logging-interceptor"
+
     // recycler view
     implementation "androidx.recyclerview:recyclerview:$recyclerview_version"
     implementation "androidx.recyclerview:recyclerview-selection:$recyclerview_selection_version"
+
+    // glide
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
 
     // timber
     implementation "com.jakewharton.timber:timber:$timber_version"
