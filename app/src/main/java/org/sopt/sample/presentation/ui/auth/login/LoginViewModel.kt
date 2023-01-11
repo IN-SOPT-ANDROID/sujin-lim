@@ -1,27 +1,48 @@
 package org.sopt.sample.presentation.ui.auth.login
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import org.sopt.sample.data.remote.api.ApiPool
-import org.sopt.sample.data.remote.model.request.auth.RequestLoginDTO
-import org.sopt.sample.data.remote.model.response.auth.ResponseAuthDTO
-import org.sopt.sample.data.remote.model.response.home.ResponseUserDTO
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import org.sopt.sample.data.remote.model.request.auth.RequestLoginDto
+import org.sopt.sample.data.remote.model.request.auth.RequestSignupDto
+import org.sopt.sample.data.remote.model.response.auth.ResponseAuthDto
+import org.sopt.sample.data.remote.repository.RemoteRepository
+import org.sopt.sample.presentation.state.UiState
+import javax.inject.Inject
 
-class LoginViewModel : ViewModel() {
+@HiltViewModel
+class LoginViewModel @Inject constructor(
+    private val remoteRepository: RemoteRepository
+) : ViewModel() {
+    val userId = MutableLiveData<String>()
+    val userPw = MutableLiveData<String>()
 
-    // saved user info
-    var userId: String = ""
-    var userPw: String = ""
-    var userMbti: String = ""
+    private val _loginState: MutableLiveData<UiState<ResponseAuthDto>> =
+        MutableLiveData(UiState.Init)
+    val loginState: LiveData<UiState<ResponseAuthDto>>
+        get() = _loginState
 
-    // user input info
-    var curId: String = ""
-    var curPw: String = ""
+    fun login() {
+        viewModelScope.launch {
+            _loginState.value = UiState.Loading(true)
 
-    fun isSuccessLogin(): Boolean =
-        (userId.isNotEmpty() && userPw.isNotEmpty())
-                && (curId.isNotEmpty() && curPw.isNotEmpty())
-                && (userId == curId && userPw == curPw)
+            runCatching {
+                remoteRepository.login(RequestLoginDto(
+                    email = userId.value.toString(),
+                    password = userPw.value.toString()
+                ))
+            }
+                .onSuccess {
+                    _loginState.value = UiState.Loading(false)
+                    _loginState.value = UiState.Success(it)
+                }
+                .onFailure {
+                    _loginState.value = UiState.Loading(false)
+                    _loginState.value = UiState.Error(it.toString())
+                }
+        }
+    }
 }

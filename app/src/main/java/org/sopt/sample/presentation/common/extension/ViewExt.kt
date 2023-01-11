@@ -10,3 +10,11 @@ fun View.showSnackbar(message: String) {
         Snackbar.LENGTH_SHORT
     ).show()
 }
+
+fun View.toVisible() {
+    this.visibility = View.VISIBLE
+}
+
+fun View.toGone() {
+    this.visibility = View.GONE
+}

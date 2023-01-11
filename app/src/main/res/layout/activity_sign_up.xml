@@ -4,6 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.view.View" />
+        <import type="org.sopt.sample.presentation.state.UiState" />
+
+        <variable
+            name="viewModel"
+            type="org.sopt.sample.presentation.ui.auth.signup.SignUpViewModel" />
+
         <variable
             name="activity"
             type="org.sopt.sample.presentation.ui.auth.signup.SignUpActivity" />
@@ -16,13 +23,22 @@
         android:paddingHorizontal="@dimen/margin_bg_default"
         tools:context=".presentation.ui.auth.signup.SignUpActivity">
 
+        <ProgressBar
+            android:id="@+id/pb_signup_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
         <TextView
             android:id="@+id/tv_signup_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/signup_title_text"
             style="@style/H1"
-            android:layout_marginTop="@dimen/margin_bg_vertical_default"
+            android:layout_marginTop="@dimen/spacing40"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -32,7 +48,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             layout="@layout/layout_text_input"
-            android:layout_marginTop="@dimen/margin_bg_vertical_default"
+            app:textContent="@{viewModel.userId}"
+            android:layout_marginTop="@dimen/spacing20"
             app:layout_constraintTop_toBottomOf="@id/tv_signup_title"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -41,8 +58,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             layout="@layout/layout_text_input"
-            android:layout_marginTop="@dimen/margin_bg_vertical_default"
+            app:textContent="@{viewModel.userPw}"
+            android:layout_marginTop="@dimen/spacing20"
             app:layout_constraintTop_toBottomOf="@id/layout_id_text_input"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <include
+            android:id="@+id/layout_name_text_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            layout="@layout/layout_text_input"
+            app:textContent="@{viewModel.userName}"
+            android:layout_marginTop="@dimen/spacing20"
+            app:layout_constraintTop_toBottomOf="@id/layout_pw_text_input"
             app:layout_constraintStart_toStartOf="parent" />
 
         <include
@@ -50,8 +78,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             layout="@layout/layout_text_input"
-            android:layout_marginTop="@dimen/margin_bg_vertical_default"
-            app:layout_constraintTop_toBottomOf="@id/layout_pw_text_input"
+            app:textContent="@{viewModel.userMbti}"
+            android:layout_marginTop="@dimen/spacing20"
+            app:layout_constraintTop_toBottomOf="@id/layout_name_text_input"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
@@ -60,8 +89,8 @@
             android:layout_height="wrap_content"
             android:text="@string/signup_done_btn_text"
             android:onClick="@{() -> activity.signUp()}"
-            android:paddingVertical="@dimen/padding_btn_vertical_default"
-            android:layout_marginTop="@dimen/margin_bg_vertical_default"
+            android:paddingVertical="@dimen/spacing12"
+            android:layout_marginTop="@dimen/spacing20"
             app:layout_constraintTop_toBottomOf="@id/layout_mbti_text_input" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

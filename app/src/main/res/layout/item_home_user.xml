@@ -6,7 +6,7 @@
         <import type="androidx.core.content.ContextCompat"/>
         <variable
             name="userItem"
-            type="org.sopt.sample.domain.model.home.User" />
+            type="org.sopt.sample.presentation.model.home.User" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

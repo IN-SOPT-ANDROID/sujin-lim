@@ -1,6 +1,7 @@
 package org.sopt.sample.presentation.ui.main
 
 import android.os.Bundle
+import dagger.hilt.android.AndroidEntryPoint
 import org.sopt.sample.R
 import org.sopt.sample.databinding.ActivityMainBinding
 import org.sopt.sample.presentation.common.binding.BindingActivity
@@ -10,6 +11,7 @@ import org.sopt.sample.presentation.ui.home.HomeFragment
 import org.sopt.sample.presentation.ui.search.SearchFragment
 import timber.log.Timber
 
+@AndroidEntryPoint
 class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
